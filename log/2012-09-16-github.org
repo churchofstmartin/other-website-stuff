@@ -1,0 +1,45 @@
+#+TITLE: 2012-09-16-github.org
+#+AUTHOR: Gail Gong
+#+DATE: 2012-09-16
+
+#+LATEX_HEADER: \usepackage{amscd}
+#+LATEX_HEADER: \usepackage{parskip}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{multirow}
+#+LATEX_HEADER: \usepackage[table]{xcolor}
+#+LATEX_HEADER: \addtolength{\oddsidemargin}{-1.0in}
+#+LATEX_HEADER: \addtolength{\evensidemargin}{-1.0in}
+#+LATEX_HEADER: \addtolength{\textwidth}{2.0in}
+
+#+LATEX_HEADER: \addtolength{\topmargin}{-1.5in}
+#+LATEX_HEADER: \addtolength{\textheight}{2.3in}
+
+#+STYLE:    <link rel="stylesheet" type="text/css" href="./html-skeleton.css" />
+#+PROPERTY: session *R*
+#+PROPERTY: cache no
+#+PROPERTY: results output verbatim
+#+PROPERTY: exports both
+#+PROPERTY: tangle yes
+
+# <<TOP>>
+
+
+* Our account
+churchofstmartin
+developer@churchofstmartin.org
+
+* How to make another repository
+
+Create a new repo > Repository name > Create repository
+
+Follow the directions
+
+Click on the repository
+Admin > 
+Options > Uncheck Wikis > Check Restrict edits to Collaborators only
+Collaborators > gailg Add > davisdaddy Add
+
+* To clone a repository 
+Log in as gailg
+churchofstmartin/TheTWentytenStm > Read+Write access
+Mac > Command line > churchofstmartin-github > git clone (paste)
