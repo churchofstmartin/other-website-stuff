@@ -1,4 +1,4 @@
-#+TITLE: skeleton
+#+TITLE: 2012-09-16-test-dot-churchofstmartin.org
 #+AUTHOR: Gail Gong
 #+DATE: 2012-09-16
 
@@ -23,4 +23,9 @@
 
 # <<TOP>>
 
-
+* How to do command line stuff
+ssh stmartin@churchofstmartin.org
+(Mike has already set up my credentials.)
+cd public_html/test
+cd wp-content/themes
+(Now Mike is checking to see if our website computer has git.)

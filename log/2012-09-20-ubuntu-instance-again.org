@@ -1,0 +1,107 @@
+#+TITLE: stMartinTest notes
+#+AUTHOR: Gail Gong
+#+DATE: 2012-09-20
+
+#+LATEX_HEADER: \usepackage{amscd}
+#+LATEX_HEADER: \usepackage{parskip}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{multirow}
+#+LATEX_HEADER: \usepackage[table]{xcolor}
+#+LATEX_HEADER: \addtolength{\oddsidemargin}{-1.0in}
+#+LATEX_HEADER: \addtolength{\evensidemargin}{-1.0in}
+#+LATEX_HEADER: \addtolength{\textwidth}{2.0in}
+
+#+LATEX_HEADER: \addtolength{\topmargin}{-1.5in}
+#+LATEX_HEADER: \addtolength{\textheight}{2.3in}
+
+#+STYLE:    <link rel="stylesheet" type="text/css" href="./html-skeleton.css" />
+#+PROPERTY: session *R*
+#+PROPERTY: cache no
+#+PROPERTY: results output verbatim
+#+PROPERTY: exports both
+#+PROPERTY: tangle yes
+
+# <<TOP>>
+
+
+* 2012-09-20
+
+** Mike
+- To log in to the website
+  ssh -i stmtest.pem ubuntu@ec2-54-245-119-78.us-west-2.compute.amazonaws.com
+- Moved all the wordpress files to the top level directory.
+- Cloned TheTwentytenStm from github.
+- sudo chown -R www-data.www-data TheTwentytenStm
+- Installed wp-cycle.
+
+** Turn on website on laptop so I can compare to what I had before
+Gail-Gongs-MacBook-Pro:~ gailgong$ cd /Applications/wordpress-3.4-0/
+Gail-Gongs-MacBook-Pro:wordpress-3.4-0 gailgong$ ./ctlscript.sh start
+localhost:8080/wordpress/wp-admin
+
+
+** Login to wordpress website
+http://ec2-54-245-119-78.us-west-2.compute.amazonaws.com/wp-admin
+rector
+hint: stillmotion workshop
+
+
+** Set up the TheTwentyTenStm stuff, including header, front page, and sidebar
+dashboard
+themes
+1. activate TheTwentytenStm
+2. upload header image
+   themes > header > TheTwentytenStm/images/header-image-png > upload
+3. turn off comments
+   settings > discussion > check the following:
+   Basically, turn off Allow people to post comments on new articles
+4. Front page
+   Some pictures of our family...
+   [wp_cycle]
+   Newsletter  Podcasts Photo Gallery Calendar
+5. Set it to be the front page
+   Settings > Reading > A static page > Some pictures of our family...
+6. Adjust wp-cycle settings
+   plugins > installed plugins > wp-cycle >
+   width 700 height 467
+   upload images; they can't be too large
+   Ask Gail to export from lightroom quality 25% and reorder using bridge
+7. Fix sidebar step 1
+   widgets > primary widget area > recents posts > Announcements
+   Remove everything except recent posts and search
+8. Fix sidebar step 2
+   plugins > add new > Floating Social Media Icon > install > activate
+   Floating Social Media Settings > Theme 19
+   Put in links for facebook, twitter and rss feed
+   Display mode: Manual only (using shortcode or php code--will not
+   float)
+   update
+
+* 2012-08-18
+
+** Create some other pages
+
+* 2012-08-25
+** Get ready to move to churchofstmartin subdomain
+*** Copy TheTwentytenStm to the-g/.../stMartinTest/2012-08-25-subdomain/01-before
+*** In /02-now
+**** Move out the images folder to test if we really need it.
+Nothing seems to have changed.
+**** I don't need the additional add_image_size in functions.php.
+***** functions.php Delete:
+add_image_size( 'thumbnail', 280, 150, true);
+add_image_size( 'medium', 350, 233, true);
+add_image_size( 'large', 700, 467, true);
+
+Add the image sizes in settings > media
+thumbnail 175 117
+medium 233 157
+large 350 233
+was 1024 1024
+***** Make a new Worship page 
+since the old one doesn't have much and it was created before comments
+were disabled.
+
+
+ 
+
