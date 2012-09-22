@@ -122,12 +122,99 @@ Here is some more information to plug in under the Welcome / About us menu:
   - Choirs needs link to music (3D)
   
 - 2F Ministies Leaders.  Nothing needed.  
+org-export-region-as-html 
+
+| Acolyte Program                             | Robert Lynch                          |
+| Administrator/ Office Volunteer Coordinator | Jan Sanders                           |
+| Altar Guild                                 | Nancy Crummey, Dawn Preisler          |
+| Belfry University Ministry                  | Elise Keddie, Jim Cheney              |
+| Buildings and Grounds                       | John Reeves, Mike Rushton             |
+| Centering Prayer Group                      | Kim Andrup                            |
+| Child care/Nursery (Sundays)                | Mary Honour Gottschalk                |
+| Children’s Choir Director                   | Janie Knudsen                         |
+| Coffee Hour Coordinators                    | Sharon Cucinotta (coffee)             |
+|                                             | Janet Lane & Bob Holm (food)          |
+| Communications Commission                   | Mike Hannon                           |
+| Concerts and Concert Series                 | Gerard Montana                        |
+| Craft Fair Coordinator                      | Carol Boyer                           |
+| Cursillo                                    | Russ Bruch                            |
+| Davis Community Meal Liaison                | Janet Lane, Neil Willits, Mike Hannon |
+| Flower Guild                                | Anne Duffey                           |
+| Healing Ministry                            | Margaret Grayden                      |
+| Helping Hands                               | Jim and Alice Borchers                |
+| Hospitality                                 | Brian Shontz, Sharon Cucinotta        |
+| Junior Warden                               | Janet Lane                            |
+| Labyrinth Cleaning                          | Helen Campbell                        |
+| Lay Eucharistic Ministers                   | The Rev. Ernie Lewis                  |
+| Lector/Readers Coordinator                  | Jan Sanders                           |
+| Library Book Coordinator                    | Elizabeth Honig                       |
+| Music Director                              | Gerard Montana                        |
+| Newsletter Editor                           | Elizabeth Sagehorn                    |
+| Outreach Commission Co-chairs               | Renee Crevelli-Gross, Alison Pease    |
+| Parish Commission on Ministry               | Nancy Allen                           |
+| Photography                                 | Gail Gong, Nate Hannon, Fel Ramey     |
+| Podcasts of services                        | Bruce Winterhalder                    |
+| Senior Warden                               | Pierre Neu                            |
+| Stephen Ministry                            | Margaret Grayden, Carla Harris        |
+| Stewardship Chair                           | Neil Willits                          |
+| Sunday School/Godly Play                    | Lisa Leigh, Dee Garcia                |
+| Telecom/Technology                          | Craig Harris                          |
+| Transportation Assistance                   | Adam Russ                             |
+| Treasurer                                   | Stephen Lawrence                      |
+| Ushers/Greeters                             | Russ Bruch                            |
+| Volunteer Gifts Coordinator                 | Lynn Zender                           |
+| Webmaster                                   | Mary Briggs                           |
+| Worship                                     | The Rev. Mark Allen                   |
+| Youth Group (TYGMOS)                        | Lisa Leigh, Robert Lynch              |
 
 
 
 
-| Acolyte Program | Robert Lynch                 |
-| Altar Guild     | Nancy Crummey, Dawn Preisler |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 - 2I  Social Activities.  Needs photos
  
