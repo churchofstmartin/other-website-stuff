@@ -107,24 +107,25 @@ Or we can catch it in the testing phase if that is easier for you.
 *** 2012-09-18 Web site information - second batch - 6 files
 Here is some more information to plug in under the Welcome / About us menu:
  
-- 2A Welcome.  Needs 4 links coded.  Photo.
+**** 2A Welcome.  Needs 4 links coded.  Photo.
   [[./../photos/website-2012-06/mark-birthday-prayer-pentecost-02-2012.jpg]]
 
   [[./../photos/website-2012-07/mark-sermon-03-pentecost-08-2012.jpg]]
 
-- 2B Address / Map.  Needs map inserted.  Photo - suggest outside of church.
-- 2C Staff / Vestry.  Needs photo of Janie.
-- 2E Ministries. 
+**** 2B Address / Map.  Needs map inserted.  Photo - suggest outside of church.
+**** 2C Staff / Vestry.  Needs photo of Janie.
+**** 2E Ministries. 
   - Needs links to Ministry leaders2F  
   - Needs photos.
   - Needs image/link to Order of St Luke
   - Needs image/link to Stephen Ministry
   - Choirs needs link to music (3D)
   
-- 2F Ministies Leaders.  Nothing needed.  
+**** 2F Ministies Leaders.  Nothing needed.  
 define a macro: c-x ( > do the stuff > c-x) > c-x e > e
 select a rectangle: go to beginning > c-space > go to end > c-x r k
 paste a rectange: go to the place > c-x r y
+sort a table c-c ^
 org-export-region-as-html 
 
 | Acolyte Program                             | Robert Lynch                          |
@@ -170,70 +171,28 @@ org-export-region-as-html
 | Worship                                     | The Rev. Mark Allen                   |
 | Youth Group (TYGMOS)                        | Lisa Leigh, Robert Lynch              |
 
+**** table sorting experiment
 
+| larry  | seaweed  |
+| monty  | clams    |
+| sangea | potatoes |
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- 2I  Social Activities.  Needs photos
+**** 2I  Social Activities.  Needs photos
  
-Two documents are left in this section: 2G and 2H.  They are due
-shortly.
+**** 2G
+**** 2H
+
 
 *** 2012-09-19 More web site files - 7 Files
 Here are the Worship files. 
  
-- 3A  Regular Services: Need links to Nursery doc and photos.  But
+**** 3A  Regular Services: Need links to Nursery doc and photos.  But
       photos should go after the service times.  
-- 3B  Summer Services: Needs link to Nursery doc.  Photo?
-- 3C  Holiday Services: Needs photos
-- 3D  Music:  Needs Link to organ file (attached).
-- 3E  Nursery:  Needs photos.
-- 3F  Podcasts:  This is the list of podcasts in the format we have
+**** 3B  Summer Services: Needs link to Nursery doc.  Photo?
+**** 3C  Holiday Services: Needs photos
+**** 3D  Music:  Needs Link to organ file (attached).
+**** 3E  Nursery:  Needs photos.
+**** 3F  Podcasts:  This is the list of podcasts in the format we have
   now.  The only request is to include an option to subscribe to the
   podcasts.  Is this possible? 
 
