@@ -183,7 +183,6 @@ org-export-region-as-html
 **** 2G
 **** 2H
 
-
 *** 2012-09-19 More web site files - 7 Files
 Here are the Worship files. 
  
@@ -202,3 +201,4 @@ Here are the Worship files.
 ** Action items
 From Gerard: add option to subscribe to podcasts.
 
+** 2012-09-27 
