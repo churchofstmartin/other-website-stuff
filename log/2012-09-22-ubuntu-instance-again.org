@@ -49,7 +49,8 @@ hint: stillmotion workshop
 ** Set up the TheTwentyTenStm stuff, including header, front page, and sidebar
 dashboard
 themes
-1. activate TheTwentytenStm
+0. activate TheTwentytenStm
+1. Set permalink to day and link
 2. upload header image
    themes > header > TheTwentytenStm/images/header-image-png > upload
 3. turn off comments
