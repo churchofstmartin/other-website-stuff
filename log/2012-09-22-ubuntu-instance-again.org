@@ -225,4 +225,6 @@ newsletter
 photgraphy
 etc?
 
+We already have a contact us button on is the sidebar.
+
 
