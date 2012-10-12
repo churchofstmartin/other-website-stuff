@@ -273,7 +273,7 @@ Jennifer@churchofstmartin.org
 
 
 *** 2012-10-10 An inventory of the pages
-**** 2 Welc0me
+**** 2 Welcome
 ***** 2A Welcome [links]
 ***** 2B Address/Map [done]
 ***** 2B Contact Us [done]
@@ -318,7 +318,7 @@ Needs Nursery Care Link
 ***** 4D University/Belfry
 
 **** 5 Serving Others
-***** 5A Outreach Program
+***** 5A Outreach Program [done]
 ***** 5B Grants Awarded
-***** 5C Davis Community Meals
+***** 5C Davis Community Meals [done]
 
