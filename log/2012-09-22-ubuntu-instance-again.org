@@ -87,7 +87,18 @@ themes
     Appearance > Menus >  Menu Name > Header Menu > Create Menu
     Primary Navigation > Header Menu
     Drag in Some pictures of our family > Navigation Label > HOME
-    Drag in Welcome to St. Martin's > Navigation Label WELCOME/ABOUT US
+    Drag in Welcome to St. Martin's > Navigation Label WELCOME/ABOUT
+    US
+
+11. Photos like the ones in Regular Services 
+    have aspect ratio 3.5 x 1
+    and are brought in using center and full size
+12. Photos like the ones in Staff and Vestry
+    are brought in using left or right and medium size
+
+13. Headings in the Staff and Vestry 
+    are Heading 3
+
 ** Organize files from Gerard
 
 *** 2012-09-18 First batch for web suite - 3 files
@@ -204,6 +215,8 @@ From Gerard: add option to subscribe to podcasts.
 ** 2012-09-27 
 *** /photos/otherpages
 I am organizing the photos according to potentials for each page
+
+The "headline photos" have aspect ratio 3.5 x 1
 *** Mike added a widgit for contact
 *** Mike added something for maps
 *** There are two other emails I need to document here.
@@ -227,4 +240,85 @@ etc?
 
 We already have a contact us button on is the sidebar.
 
+
+
+*** 2012-10-08
+**** 2C (Anne's bio)
+Retirement brought Anne back to Davis and to St. Martin’s which she
+had  first attended in 1987 as a parishioner. St Martin’s sponsored
+her for ordination and then in 1992 hired her as an assistant with a
+primary focus on education for all ages. In 1999 she was asked to
+serve as interim rector at St. Paul’s Benicia and then later at
+Ascension Vallejo.  In 2002 she moved to Idaho to serve as the rector
+of Trinity Episcopal Church in Pocatello. 
+
+In her nine years in Idaho she took up snowshoeing and adopted her
+first German shepherd. She’s long enjoyed hiking, gardening, reading,
+music and conversation with friends. She has 2 daughters: one with a
+masters degree in international development and gender issues and the
+other finishing a bachelors in interior design. Both will warn you
+about playing scrabble with her.
+
+
+**** 2C (Jennifer's bio)
+This goes in 2C Staff / Vestry after Janie's bio and it needs a photo of Jennifer.
+ 
+Jennifer Maloney, Children’s & Youth Ministry Administrator
+ 
+Jennifer comes to California and St. Martin by way of Memphis, Tennessee.  Previously she has worked in both the banking and investment industries. Before moving to California and placing her career on the back burner to raise her two young children, she held the position of VP of Private Banking for Bank of America.  Additionally Jennifer has always dedicated her time to volunteering and giving to others.  She has spent years serving others in the community by raising funds and serving on numerous boards for not-for-profit organizations.
+ 
+“If you have any questions regarding our Nursery, Children’s or Youth Ministries, please do not hesitate to contact me. I will be happy to spend time discussing all the wonderful programs within our church offered and introduce you to the incredible staff of loving and dedicated teachers we are so lucky to have.”
+ 
+Jennifer@churchofstmartin.org
+
+
+*** 2012-10-10 An inventory of the pages
+**** 2 Welc0me
+***** 2A Welcome [links]
+***** 2B Address/Map [done]
+***** 2B Contact Us [done]
+***** 2C Staff/Vestry [email links] [Anne's email]
+***** 2E Ministries
+text for the following
+Centering Prayer Group
+Coffee Hour
+Communications
+Craft Fair
+Cursillo
+Hospitality
+Labyrinth Cleaning
+Lay Eucharistic Ministers
+Lector/Readers
+Parish Commission on Ministry
+Photography and Cinematography
+Podcasts
+Church School/Godly Play
+Telecom/Technology
+Transportation Assistance
+
+***** 2F Ministries Leaders
+***** 2G Labyrinth/Coumbarium [2 links]
+There is a phone number which we might want to remove
+***** 2H Church History [photos]
+***** 2I Social Activities [lunch bunch photo] [fellowship dinner photo]
+
+**** 3 Worship
+***** 3A Regular Services [done]
+***** 3B Summer Services [done]
+Needs Nursery Care Link
+***** 3C Holiday Services [done]
+***** 3D Music [done]
+***** 3E Nursery
+***** 3F Podcasts
+
+**** 4 Christian Formation
+***** 4A Children Grades PreK - 6
+***** 4B Youth Grades 7 - 12
+***** 4C Adult Ed
+***** 4D University/Belfry
+
+**** 5 Serving Others
+***** 5A Outreach Program
+***** 5B Grants Awarded
+***** 5C Davis Community Meals
 
