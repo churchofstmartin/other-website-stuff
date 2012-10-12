@@ -278,7 +278,7 @@ Jennifer@churchofstmartin.org
 ***** 2B Address/Map [done]
 ***** 2B Contact Us [done]
 ***** 2C Staff/Vestry [email links] [Anne's email]
-***** 2E Ministries
+***** 2E Ministries [Janet]
 text for the following
 Centering Prayer Group
 Coffee Hour
@@ -299,7 +299,7 @@ Transportation Assistance
 ***** 2F Ministries Leaders
 ***** 2G Labyrinth/Coumbarium [2 links]
 There is a phone number which we might want to remove
-***** 2H Church History [photos]
+***** 2H Church History [photos] [Janet]
 ***** 2I Social Activities [lunch bunch photo] [fellowship dinner photo]
 
 **** 3 Worship
