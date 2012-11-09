@@ -25,7 +25,6 @@
 
 
 * 2012-09-20
-
 ** Mike
 - To log in to the website
   ssh -i stmtest.pem ubuntu@ec2-54-245-119-78.us-west-2.compute.amazonaws.com
@@ -39,12 +38,10 @@ Gail-Gongs-MacBook-Pro:~ gailgong$ cd /Applications/wordpress-3.4-0/
 Gail-Gongs-MacBook-Pro:wordpress-3.4-0 gailgong$ ./ctlscript.sh start
 localhost:8080/wordpress/wp-admin
 
-
 ** Login to wordpress website
 http://ec2-54-245-119-78.us-west-2.compute.amazonaws.com/wp-admin
 r
 hint: stillmotion workshop  - - /
-
 
 ** Set up the TheTwentyTenStm stuff, including header, front page, and sidebar
 dashboard
@@ -241,7 +238,6 @@ etc?
 We already have a contact us button on is the sidebar.
 
 
-
 ** 2012-10-08
 **** 2C (Anne's bio)
 Retirement brought Anne back to Davis and to St. Martin’s which she
@@ -270,7 +266,6 @@ Jennifer comes to California and St. Martin by way of Memphis, Tennessee.  Previ
 “If you have any questions regarding our Nursery, Children’s or Youth Ministries, please do not hesitate to contact me. I will be happy to spend time discussing all the wonderful programs within our church offered and introduce you to the incredible staff of loving and dedicated teachers we are so lucky to have.”
  
 Jennifer@churchofstmartin.org
-
 
 ** 2012-10-10 An inventory of the pages
 **** 2 Welcome
@@ -346,7 +341,6 @@ Needs Nursery Care Link
 ***** 5B Grants Awarded
 ***** 5C Davis Community Meals [done]
 
-
 ** 2012-10-13 Thinking about a people table
 
 
@@ -397,16 +391,129 @@ Telecom/Technology
 Transporation Assistance
 
 
-*** 2012-10-02 Fw: [WordPress.org Forums] How to run my own PHP script from a WP page?
+*** 2012-01-01 Mike: database stuff
+I finally got all the database tables to "compile" into a MySQL
+database on my PC.  I've attached all the relevant files to this
+message, just as a reference and a backup.  We now have to think
+about: 
 
-*** 2012-10-12 
+(1) what we want from the tables and
+
+(2) what combination of PHP/MySQL we need to get what we want.
+
+Note that these steps may require going back to step (0) one or more
+times.  I.e., "compiling" is never the same as successful execution. 
+
+I think a good way to start would be to sit at my computer and just
+invent some queries.  I.e., let's imagine we need a "Ministries" page.
+What MySQL commands would give us content suitable for such a page?
+We can try this interactively.  If and when we decide we have the
+appropriate stuff in the database and the appropriate command(s) to
+extract it, we can try making a simple PHP file and making the same
+database queries from there. 
+
+If and when that works, we can gussy up the PHP to give us a nicely
+formatted web page. 
+
+If and when we have a nice web page from PHP, we can try to figure out
+how to call that PHP from Wordpress (functions.php?). 
+*** 2012-01-01 make-db.tar.gz
+*** 2012-01-02 Mike: Ministries from database via PHP
+I've taken the next, halting steps toward using the database on the
+web site.  FYI, I've attached a PHP file that uses the query I showed
+you this (Thursday) evening to pull some ministry information out of
+the database and then displays that information on a web page.  Have a
+look at: 
+
+    http://mikehppc2.gh.lan/~mike/mysql/displayMinistriesAndLeaders.php
+
+or if you're not using my name server (hence, can't connect to
+"mikehppc2..."), use the numerical address: 
+
+    http://192.168.1.89/~mike/mysql/displayMinistriesAndLeaders.php
+
+BTW, the "login.php" file mentioned in the attached looks something like:
+
+    <?php // login.php
+    $db_hostname = 'localhost';
+    $db_database = 'people';
+    $db_username = 'mike';
+    $db_password = 'xxxxxxxxx';
+    ?>
+
+I.e., it's a simple way to avoid having to re-type the login
+information in every file that references the database, and it
+provides a slight bit of obfuscation, as the pw info does not appear
+directly in the main PHP file. 
+
+I guess the next step is to figure out how to do this from WP.
+
+Another, back-burner issue is to decide if/how to unify the two
+"ministry" pages.  I.e., do we want to put G.'s extended descriptions
+into the database (or into a file referenced from the database)?  And
+what about all the ministries that don't have extended descriptions?
+Etc.
+*** 2012-01-02 displayMinistriesAndLeaders.php (Attached previous entry)
+<?php
+
+  require_once 'login.php';
+
+  $con = mysql_connect($db_hostname, $db_username, $db_password);
+  if (!$con) {
+    die('Could not connect: ' . mysql_error());
+   }
+
+  mysql_select_db("people", $con);
+
+  $result = mysql_query(
+       "SELECT ministries.name, persons.firstName, persons.lastName FROM
+       ministries, persons, relateMinistriesToLeaders as rmtl WHERE
+       ministries.ministryID = rmtl.ministryID AND
+       persons.personID = rmtl.leaderID ORDER BY
+       ministries.name");
+
+ 
+  echo "<table border='1'>
+  <tr>
+    <th>Ministry</th>
+    <th>Leader Name</th>
+  </tr>";
+ 
+  while($row = mysql_fetch_array($result)) {
+    echo "<tr>";
+    echo "<td>" . $row['name']      . "</td>";
+    echo "<td>" . $row['firstName'] . " " .
+                  $row['lastName']  ."</td>";
+    echo "</tr>";
+  }
+  echo "</table>";
+ 
+  mysql_close($con);
+  ?>
+*** 2012-10-02 Mike: Fw: [WordPress.org Forums] How to run my own PHP script from a WP page?
+----- Forwarded Message -----
+From: WordPress.org <noreply@wordpress.org>
+To: jm_hannon@yahoo.com 
+Sent: Sunday, November 4, 2012 1:44 AM
+Subject: [WordPress.org Forums] How to run my own PHP script from a WP page?
+
+Seacoast Web Design wrote:
+
+Create a Page Template that includes your personalized PHP and/or HTML and assign it to a page or use one of the default page template names...assign template to the page(s).
+http://codex.wordpress.org/Pages#Creating_Your_Own_Page_Templates
+
+
+
+Read this post on the forums: http://wordpress.org/support/topic/how-to-run-my-own-php-script-from-a-wp-page?replies=3#post-3333862
+
+*** 2012-10-12 Mike: some progress
 FYI, I've created a custom page template that allows me to put my PHP
 code into a WP page.  At the moment it doesn't integrate at all with
 the rest of the environment, but it's a start.  I.e., there's no
 header, no sidebar, etc.  Have a look at the last menu item under
 "Welcome/About Us".  I'll poke around later on Monday to see if I can
 include the missing features (sidebar, etc.). 
-*** 2012-11-06 Mike
+*** 2012-11-06 Mike: the custom database tables, etc.
 For our reference, I've appended the current contents of the "xstm_" tables,
 the ones that I used for the custom web page.
 
@@ -835,3 +942,47 @@ mysql> select * from xstm_relateMinistriesToLeaders;
 63 rows in set (0.00 sec)
 
 mysql> Bye
+
+** 2012-11-09 How to increase the upload file size
+###### Change the PHP configuration
+$ sudo diff /etc/php5/apache2/php.ini /etc/php5/apache2/php.ini.20121109
+891c891
+< upload_max_filesize = 72M
+---
+> upload_max_filesize = 8M
+
+###### Restart the web server
+$ sudo invoke-rc.d apache2 stop
+ * Stopping web server apache2      ... waiting                  [ OK ]
+$ sudo invoke-rc.d apache2 start
+ * Starting web server apache2      
+
+I believe that in php.ini, we need to make the following two changes
+upload_max_filesize = 72M
+post_max_size = 72 M
+
+** 2012-11-09 Newsletters
+** 2012-11-09 Podcasts
+*** Scott used Podcasting Plugin by TSG
+We installed this plugin and copied all of Scott's settings
+*** How to add a media file
+We are following the video here
+http://docs.podcastingplugin.com/setup/adding-a-media-file/
+
+Add new post
+Add title 
+Categories podcasts
+Copy title to body and change it to Heading 2
+Upload media
+File URL
+Insert into Post
+Publish
+Click two lines after Heading 2 line
+Send to Editor
+Add a line feed
+Update
+
+View post
+Click on play button to hear the service.
+
+
