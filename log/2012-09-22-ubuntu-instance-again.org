@@ -43,7 +43,7 @@ localhost:8080/wordpress/wp-admin
 ** Login to wordpress website
 http://ec2-54-245-119-78.us-west-2.compute.amazonaws.com/wp-admin
 r
-hint: stillmotion workshop
+hint: stillmotion workshop  - - /
 
 
 ** Set up the TheTwentyTenStm stuff, including header, front page, and sidebar
@@ -242,7 +242,7 @@ We already have a contact us button on is the sidebar.
 
 
 
-*** 2012-10-08
+** 2012-10-08
 **** 2C (Anne's bio)
 Retirement brought Anne back to Davis and to St. Martin’s which she
 had  first attended in 1987 as a parishioner. St Martin’s sponsored
@@ -272,7 +272,7 @@ Jennifer comes to California and St. Martin by way of Memphis, Tennessee.  Previ
 Jennifer@churchofstmartin.org
 
 
-*** 2012-10-10 An inventory of the pages
+** 2012-10-10 An inventory of the pages
 **** 2 Welcome
 ***** 2A Welcome [links]
 ***** 2B Address/Map [done]
@@ -346,3 +346,492 @@ Needs Nursery Care Link
 ***** 5B Grants Awarded
 ***** 5C Davis Community Meals [done]
 
+
+** 2012-10-13 Thinking about a people table
+
+
+*** people
+| id | name       | email | photo |
+|----+------------+-------+-------|
+|  1 | Janet Lane |       |       |
+
+
+
+*** ministries
+
+| mid | name     | leader-id |
+|-----+----------+-----------|
+| 123 | outreach |         1 |
+
+
+
+
+
+
+
+
+
+
+*** people page
+
+Janet L
+
+*** ministries page
+In case this may help, these are the ministries we would like descriptions of:
+
+Baptismal Pool Guild
+Church School/Godly Play
+Craft Fair (Carol Boyer)
+Cursillo
+Environmental Committee (Beth Robbins)
+Eucharistic Ministers
+Eucharistic Vistors
+Hospitality Commission (Sharon Cucinotta or Brian Shontz)
+Labyrinth Committee (Janet Lane)
+Library
+Liturgy
+Parish Commission on Ministry
+Podcasts
+Readers
+Telecom/Technology
+Transporation Assistance
+
+
+*** 2012-10-02 Fw: [WordPress.org Forums] How to run my own PHP script from a WP page?
+
+*** 2012-10-12 
+FYI, I've created a custom page template that allows me to put my PHP
+code into a WP page.  At the moment it doesn't integrate at all with
+the rest of the environment, but it's a start.  I.e., there's no
+header, no sidebar, etc.  Have a look at the last menu item under
+"Welcome/About Us".  I'll poke around later on Monday to see if I can
+include the missing features (sidebar, etc.). 
+*** 2012-11-06 Mike
+For our reference, I've appended the current contents of the "xstm_" tables,
+the ones that I used for the custom web page.
+
+The "machinery" to generate the tables is stored on the ubuntu site:
+
+    ubuntu@ip-10-252-38-202:~/mysql$ pwd
+    /home/ubuntu/mysql
+    
+    ubuntu@ip-10-252-38-202:~/mysql$ ls
+    displayMinistriesAndLeaders.php           makeMinistriesSQL.R
+    makeRelMinToLeaders.sql.old
+    displayMinistriesAndLeaders.php.20121105  makeMinistryLeaders.sql
+    ministriesAndLeadersUnn.org
+    displayMinistriesAndLeaders.sql           makeMinistryLeaders.sql.old
+    ministriesAndLeadersUnn.txt
+    foo.html                                  makeMinistryLeadersSQL.R
+    ministries.org
+    login.php                                 makePersons.sql
+    ministries.txt
+    make-db.sql                               makePersons.sql.old
+    ministryLeaders.org
+    Makefile                                  makePersonsSQL.R
+    ministryLeaders.txt
+    makeMinistries.sql                        makeRelMinToLeaders.R
+    persons.org
+    makeMinistries.sql.old                    makeRelMinToLeaders.sql
+    persons.txt
+
+With a little care and hacking, all of the tables can be generated in about
+ten minutes using the procedures listed above.  I'll describe the process
+later.  Note that small modifications to the tables can be made "by hand",
+using mysql (or similar), rather than regenerating the whole set of tables,
+although that does run the risk that the "source" files above will be out of
+synch with the working tables.
+
+Note that the Wordpress stuff is located in /var/www/... on the Ubuntu system.
+
+-- Mike
+
+
+ubuntu@ip-10-252-38-202:~/mysql$ mysql -u root -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 39004
+Server version: 5.5.24-0ubuntu0.12.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use stmdb
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++--------------------------------+
+| Tables_in_stmdb                |
++--------------------------------+
+| stm_commentmeta                |
+| stm_comments                   |
+| stm_links                      |
+| stm_options                    |
+| stm_postmeta                   |
+| stm_posts                      |
+| stm_term_relationships         |
+| stm_term_taxonomy              |
+| stm_terms                      |
+| stm_usermeta                   |
+| stm_users                      |
+| xstm_ministries                |
+| xstm_ministryLeaders           |
+| xstm_persons                   |
+| xstm_relateMinistriesToLeaders |
++--------------------------------+
+15 rows in set (0.00 sec)
+
+mysql> select * from xstm_ministries;
++------------+----------------------------------+----------+
+| ministryID | name                             | category |
++------------+----------------------------------+----------+
+|          1 | Acolyte Program                  | Liturgy  |
+|          2 | Administrator/ Office Volunteers | Utility  |
+|          3 | Altar Guild                      | Liturgy  |
+|          4 | Belfry University Ministry       | Utility  |
+|          5 | Buildings and Grounds            | Utility  |
+|          6 | Centering Prayer Group           | xxxxxx   |
+|          7 | Child care/Nursery (Sundays)     | Utility  |
+|          8 | Choir, Children                  | Liturgy  |
+|          9 | Choirs, Adult                    | Liturgy  |
+|         10 | Coffee Hour (coffee)             | Utility  |
+|         11 | Coffee Hour (food)               | Utility  |
+|         12 | Communications Commission        | Utility  |
+|         13 | Concerts and Concert Series      | Utility  |
+|         14 | Craft Fair                       | Utility  |
+|         15 | Cursillo                         | xxxxxx   |
+|         16 | Davis Community Meal Liaison     | Utility  |
+|         17 | Education for Ministry (EFM)     | Utility  |
+|         18 | Eucharistic Visitors             | Caring   |
+|         19 | Flower Guild                     | Liturgy  |
+|         20 | Healing Ministry                 | Caring   |
+|         21 | Helping Hands                    | Caring   |
+|         22 | Holy Folders                     | Utility  |
+|         23 | Holy Rollers                     | Caring   |
+|         24 | Hospitality                      | Utility  |
+|         25 | Intercessory Prayers             | Caring   |
+|         26 | Junior Warden                    | Utility  |
+|         27 | Labyrinth Cleaning               | Utility  |
+|         28 | Lay Eucharistic Ministers        | Liturgy  |
+|         29 | Lector/Readers                   | Liturgy  |
+|         30 | Library Books                    | Utility  |
+|         31 | Music Director                   | Liturgy  |
+|         32 | Newsletter Editor                | Utility  |
+|         33 | Order of St. Luke                | Caring   |
+|         34 | Outreach Commission              | Utility  |
+|         35 | Parish Commission on Ministry    | Utility  |
+|         36 | Photography                      | Utility  |
+|         37 | Podcasts of services             | Utility  |
+|         38 | Quiet Days                       | Caring   |
+|         39 | Senior Warden                    | Utility  |
+|         40 | Stephen Ministry                 | Caring   |
+|         41 | Stewardship Chair                | Utility  |
+|         42 | Sunday School/Godly Play         | Liturgy  |
+|         43 | Telecom/Technology               | Utility  |
+|         44 | Transportation Assistance        | Caring   |
+|         45 | Treasurer                        | Utility  |
+|         46 | Ushers/Greeters                  | Liturgy  |
+|         47 | Volunteer Gifts                  | Utility  |
+|         48 | Webmaster                        | Utility  |
+|         49 | Worship                          | Liturgy  |
+|         50 | Youth Group (TYGMOS)             | Utility  |
++------------+----------------------------------+----------+
+50 rows in set (0.00 sec)
+
+mysql> show tables;
++--------------------------------+
+| Tables_in_stmdb                |
++--------------------------------+
+| stm_commentmeta                |
+| stm_comments                   |
+| stm_links                      |
+| stm_options                    |
+| stm_postmeta                   |
+| stm_posts                      |
+| stm_term_relationships         |
+| stm_term_taxonomy              |
+| stm_terms                      |
+| stm_usermeta                   |
+| stm_users                      |
+| xstm_ministries                |
+| xstm_ministryLeaders           |
+| xstm_persons                   |
+| xstm_relateMinistriesToLeaders |
++--------------------------------+
+15 rows in set (0.00 sec)
+
+mysql> select * from xstm_ministryLeaders;
++----------+----------+
+| leaderID | personID |
++----------+----------+
+|        1 |        1 |
+|        2 |        2 |
+|        3 |        3 |
+|        4 |        4 |
+|        5 |        5 |
+|        6 |        6 |
+|        7 |        7 |
+|        8 |        8 |
+|        9 |        9 |
+|       10 |       10 |
+|       11 |       11 |
+|       12 |       12 |
+|       13 |       13 |
+|       14 |       14 |
+|       15 |       15 |
+|       16 |       16 |
+|       17 |       17 |
+|       18 |       18 |
+|       19 |       19 |
+|       20 |       20 |
+|       21 |       21 |
+|       22 |       22 |
+|       23 |       23 |
+|       24 |       24 |
+|       25 |       25 |
+|       26 |       26 |
+|       27 |       27 |
+|       28 |       28 |
+|       29 |       29 |
+|       30 |       30 |
+|       31 |       31 |
+|       32 |       32 |
+|       33 |       33 |
+|       34 |       34 |
+|       35 |       35 |
+|       36 |       36 |
+|       37 |       37 |
+|       38 |       38 |
+|       39 |       39 |
+|       40 |       40 |
+|       41 |       41 |
+|       42 |       42 |
+|       43 |       43 |
+|       44 |       44 |
+|       45 |       45 |
+|       46 |       46 |
++----------+----------+
+46 rows in set (0.00 sec)
+
+mysql> show tables;
++--------------------------------+
+| Tables_in_stmdb                |
++--------------------------------+
+| stm_commentmeta                |
+| stm_comments                   |
+| stm_links                      |
+| stm_options                    |
+| stm_postmeta                   |
+| stm_posts                      |
+| stm_term_relationships         |
+| stm_term_taxonomy              |
+| stm_terms                      |
+| stm_usermeta                   |
+| stm_users                      |
+| xstm_ministries                |
+| xstm_ministryLeaders           |
+| xstm_persons                   |
+| xstm_relateMinistriesToLeaders |
++--------------------------------+
+15 rows in set (0.00 sec)
+
+mysql> select * from xstm_persons;
++----------+-------------+----------------+----------------------------------+-------------+
+| personID | firstName   | lastName       | email                            |
+role        |
++----------+-------------+----------------+----------------------------------+-------------+
+|        1 | Adam        | Russ           | rmr.russ@math.com                |
+Coordinator |
+|        2 | Alice       | Borchers       | alicedb@sbcglobal.net            |
+Coordinator |
+|        3 | Alison      | Pease          | alisonmp@gmail.com               |
+Coordinator |
+|        4 | Anne        | Duffey         | aduffey@dcn.davis.ca.us          |
+Coordinator |
+|        5 | Bob         | Holm           | robertholm2@yahoo.com            |
+Coordinator |
+|        6 | Brian       | Shontz         | shontz@omsoft.com                |
+Coordinator |
+|        7 | Bruce       | Winterhalder   | winterety@sbcglobal.net          |
+Coordinator |
+|        8 | Carla       | Harris         | charris05@sbcglobal.net          |
+Coordinator |
+|        9 | Carol       | Boyer          | carol.boyer@comcast.net          |
+Coordinator |
+|       10 | Craig       | Harris         | charris06@sbcglobal.net          |
+Coordinator |
+|       11 | Dawn        | Preisler       | dawnpreisler@sbcglobal.net       |
+Coordinator |
+|       12 | Dee         | Garcia         | efgarcia@sbcglobal.net           |
+Coordinator |
+|       13 | Elise       | Keddie         | emkeddie@dcn.davis.ca.us         |
+Coordinator |
+|       14 | Elizabeth   | Honig          | elizahonig@yahoo.com             |
+Coordinator |
+|       15 | Elizabeth   | Sagehorn       | Elizabeth@WriteTheFirstTime.com  |
+Coordinator |
+|       16 | Ernie       | Lewis          | ernie@churchofstmartin.org       |
+Coordinator |
+|       17 | Fel         | Ramey          | rameyfh@csus.edu                 |
+Coordinator |
+|       18 | Gail        | Gong           | gailgongster@gmail.com           |
+Coordinator |
+|       19 | Gerard      | Montana        | gerard@churchofstmartin.org      |
+Coordinator |
+|       20 | Helen       | Campbell       | hcampbell@pobox.com              |
+Coordinator |
+|       21 | Janet       | Lane           | jrlane@ucdavis.edu               |
+Coordinator |
+|       22 | Janie       | Knudsen        | JanieHowardKnudsen@gmail.com     |
+Coordinator |
+|       23 | Jan         | Sanders        | jan@churchofstmartin.org         |
+Coordinator |
+|       24 | Jim         | Borchers       | jimborchers@sbcglobal.net        |
+Coordinator |
+|       25 | Jim         | Cheney         | jacheney@ucdavis.edu             |
+Coordinator |
+|       26 | John        | Reeves         | jeree@pacbell.net                |
+Coordinator |
+|       27 | Kim         | Andrup         | keandrup@hotmail.com             |
+Coordinator |
+|       28 | Lisa        | Leigh          | lhalko@comcast.net               |
+Coordinator |
+|       29 | Lynn        | Zender         | LynnZender@sbcglobal.net         |
+Coordinator |
+|       30 | Margaret    | Grayden        | mgrayden@cal.net                 |
+Coordinator |
+|       31 | Mark        | Allen          | mark@churchofstmartin.org        |
+Coordinator |
+|       32 | Mary        | Briggs         | briggs4598@gmail.com             |
+Coordinator |
+|       33 | Mary Honour | Gottschalk     | honourL@hotmail.com              |
+Coordinator |
+|       34 | Mike        | Hannon         | jm_hannon@yahoo.com              |
+Coordinator |
+|       35 | Mike        | Rushton        | jamrushton@comcast.net           |
+Coordinator |
+|       36 | Nancy       | Allen          | akanancy@sbcglobal.net           |
+Coordinator |
+|       37 | Nancy       | Crummey        | ncrummey@urcad.org               |
+Coordinator |
+|       38 | Nate        | Hannon         | lordoftheabeliangroups@gmail.com |
+Coordinator |
+|       39 | Neil        | Willits        | nhwillits@ucdavis.edu            |
+Coordinator |
+|       40 | Pierre      | Neu            | neuforyou@sbcglobal.net          |
+Coordinator |
+|       41 | Renee       | Crevelli-Gross | cregross@comcast.net             |
+Coordinator |
+|       42 | Robert      | Lynch          | robert.b.lynch@gmail.com         |
+Coordinator |
+|       43 | Russ        | Bruch          | rab4jc@gmail.com                 |
+Coordinator |
+|       44 | Sharon      | Cucinotta      | sharndan57@att.net               |
+Coordinator |
+|       45 | Stephen     | Lawrence       | redoaktree2@yahoo.com            |
+Coordinator |
+|       46 | The         | Staff          | info@churchofstmartin.org        |
+Coordinator |
++----------+-------------+----------------+----------------------------------+-------------+
+46 rows in set (0.00 sec)
+
+mysql> show tables;
++--------------------------------+
+| Tables_in_stmdb                |
++--------------------------------+
+| stm_commentmeta                |
+| stm_comments                   |
+| stm_links                      |
+| stm_options                    |
+| stm_postmeta                   |
+| stm_posts                      |
+| stm_term_relationships         |
+| stm_term_taxonomy              |
+| stm_terms                      |
+| stm_usermeta                   |
+| stm_users                      |
+| xstm_ministries                |
+| xstm_ministryLeaders           |
+| xstm_persons                   |
+| xstm_relateMinistriesToLeaders |
++--------------------------------+
+15 rows in set (0.00 sec)
+
+mysql> select * from xstm_relateMinistriesToLeaders;
++------------+----------+
+| ministryID | leaderID |
++------------+----------+
+|         44 |        1 |
+|         21 |        2 |
+|         34 |        3 |
+|         19 |        4 |
+|         11 |        5 |
+|         24 |        6 |
+|         37 |        7 |
+|         40 |        8 |
+|         14 |        9 |
+|         43 |       10 |
+|          3 |       11 |
+|         42 |       12 |
+|          4 |       13 |
+|         30 |       14 |
+|         32 |       15 |
+|         28 |       16 |
+|         36 |       17 |
+|         36 |       18 |
+|          9 |       19 |
+|         13 |       19 |
+|         31 |       19 |
+|         27 |       20 |
+|         11 |       21 |
+|         16 |       21 |
+|         26 |       21 |
+|          8 |       22 |
+|          2 |       23 |
+|         29 |       23 |
+|         21 |       24 |
+|          4 |       25 |
+|          5 |       26 |
+|          6 |       27 |
+|         42 |       28 |
+|         50 |       28 |
+|         47 |       29 |
+|         20 |       30 |
+|         40 |       30 |
+|         49 |       31 |
+|         48 |       32 |
+|          7 |       33 |
+|         12 |       34 |
+|         16 |       34 |
+|         35 |       36 |
+|          3 |       37 |
+|         36 |       38 |
+|         16 |       39 |
+|         41 |       39 |
+|         39 |       40 |
+|         34 |       41 |
+|          1 |       42 |
+|         50 |       42 |
+|         15 |       43 |
+|         46 |       43 |
+|         10 |       44 |
+|         24 |       44 |
+|         45 |       45 |
+|         17 |       46 |
+|         18 |       46 |
+|         22 |       46 |
+|         23 |       46 |
+|         25 |       46 |
+|         33 |       46 |
+|         38 |       46 |
++------------+----------+
+63 rows in set (0.00 sec)
+
+mysql> Bye
