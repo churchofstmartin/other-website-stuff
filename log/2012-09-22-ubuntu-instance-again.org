@@ -995,18 +995,16 @@ Add title
 Categories podcasts
 Copy title to body and change it to Heading 2
 Upload media
-File URL
 Insert into Post
 Publish
 Click two lines after Heading 2 line
 Send to Editor
 Add a line feed
+Delete the link created by Insert into post
 Update
 
 View post
 Click on play button to hear the service.
-
-
 
 ** 2012-12-03 links
 Highlight the link
@@ -1015,3 +1013,264 @@ Click on the link button
 mailto:info@churchofstmartin.org
 
 
+* 2012-12-13 It went live
+** 2012-12-12 This has all happended before; it will all
+It turns out that I described the PermaLink problem, and the solution, back in
+September, long enough ago for us both to forget.
+
+As I noted at the time, the use of the top-level directory for the web site
+complicates the issue.  I.e., instead of using the default:
+
+    /var/www/wordpress
+
+we're stuffing all the wordpress stuff into:
+
+    /var/www
+
+(This is so that "wordpress" doesn't appear in our URL's, as, for example:
+
+    http://churchofstmartin.org/wordpress/outreach
+
+We have instead:
+
+    http://churchofstmartin.org/outreach
+
+I suspect that there's some clever apache trick that would obviate the need to
+do this, but I've been unable to find it.)
+
+Here are some details:
+
+It is at least convenient to make the www directory writable by the web
+server.  The result (after using chgrp and chmod):
+
+    mike@ubuntu:/var$ pwd
+    /var
+
+    mike@ubuntu:/var$ ls -ld www
+    drwxrwxr-x 7 root www-data 4096 Dec 12 18:12 www
+
+I.e., now the associated group is the apache group, "www-data", and the group
+has write access to the www directory.
+
+In order to be able to use the PermaLink stuff, we have to do several things:
+
+(1) Put a file ".htaccess" into the top-level directory:
+
+    mike@ubuntu:/var/www$ pwd
+    /var/www
+
+    mike@ubuntu:/var/www$ ls -l .htaccess
+    -rw-r--r-- 1 www-data www-data 236 Dec 12 18:15 .htaccess
+
+This file contains a bunch of obscure (to me) apache directives that tell
+apache how to rewrite the URL's in a "pretty" fashion.  The contents of the
+file are generated when you visit the Settings-->PermaLinks page in the
+Wordpress dashboard.
+
+(2) Next we have to ENABLE the kind of URL rewriting that is indicated in
+.htaccess.  There's some Ubuntu utility that does this, but all it does is
+make a symbolic link, as:
+
+    mike@ubuntu:/etc/apache2/mods-enabled$ pwd
+    /etc/apache2/mods-enabled
+
+    mike@ubuntu:/etc/apache2/mods-enabled$ ls -l rewrite.load
+    lrwxrwxrwx 1 root root 30 Dec 12 14:30 rewrite.load ->
+    ../mods-available/rewrite.load
+
+(So:
+
+    cd /etc/apache2/mods-enabled
+    ln -s ../mods-available/rewrite.load rewrite.load
+)
+
+(3) Now we've enabled the rewrite capability in general, but we also have to
+tell apache it's OK to USE that capability in specific places.  In particular,
+we tell apache that for the default site (we have only one anyway, but there
+could be other sites on the same computer) it's OK to rewrite in:
+
+       <Directory /var/www/>
+
+i.e., the place where our Wordpress stuff is stored.
+
+A simple edit of the file is all that's required.  Here's the result:
+
+    mike@ubuntu:/etc/apache2/sites-available$ pwd
+    /etc/apache2/sites-available
+
+    mike@ubuntu:/etc/apache2/sites-available$ ls
+    default  default.20121212  default-ssl
+
+    mike@ubuntu:/etc/apache2/sites-available$ diff default default.20121212
+    11,12c11
+    <         ###### AllowOverride None
+    <         AllowOverride FileInfo
+    ---
+    >         AllowOverride None
+    
+Once we've got this all done, we have to restart apache.  On Ubuntu:
+
+    sudo invoke-rc.d apache2 stop
+    sudo invoke-rc.d apache2 start
+
+** 2012-12-12 Restoring from the WP backup
+To restore the WP database from the backup, we have to first go through the
+initial steps of the database set-up.  See, for instance, the section:
+
+    Using MySQL Client
+
+on the page:
+
+    http://codex.wordpress.org/Installing_WordPress#Detailed_Instructions
+
+All of the required information is listed in the file:
+
+    wp-config.php
+
+which is part of the backup currently done to my old PC (see
+mikehppc:/home/mike/Documents/stm/backup/).  In particular, we look for:
+
+    define('DB_NAME', 'stmartin_wrdp1');    // The name of the database
+    define('DB_USER', 'stmartin_wrdp1');     // Your MySQL username
+    define('DB_PASSWORD', 'thisIsNotThePassword'); // ...and password
+
+Take the database name, user name, and password and stuff them into the
+instructions given in the Wordpress-installation guide (above).
+
+After that, you go to mysql as the WP user:
+
+    mysql -u stmartin_wrdp1 -p
+    <enter the password from the file>
+
+Then tell mysql that you want to work on our DB:
+
+    use stmartin_wrdp1;
+
+Then restore from the dump of the database:
+
+    source stmartin_wrdp1_wp_20121206_101.sql
+
+The database dump is also included as part of the backup.  I don't know the
+algorithm for generating the name, but the date is obviously part of it.  The
+name above is the one I used today.
+
+Note that there is no semi-colon after the "source" command.
+
+The rest of the restoration process consists of:
+
+(1) Copying (or generating) the .htaccess file from the backup to:
+
+    /var/www/
+
+(or whatever is the root directory for the WP stuff).
+
+(2) Copying wp-config.php to /var/www/
+
+(3) Copying (recursively) the wp-content directory from the backup to
+/var/www/.  E.g.,
+
+    cd <directory where backup stuff is located>
+    sudo rsync -a wp-content /var/www/
+
+(4) It's probably good to make sure that the apache user owns all the content:
+
+    cd /var/www
+    sudo chown -R www-data.www-data wp-content 
+
+** 2012-12-13 5:36 New name servers. FYI
+I've made the change!  With some propagation delay,
+"churchofstmartin.org" should now point to Amazon.  We'll see. 
+
+Old servers (MediaServe)
+
+DNS1.CQSERVERS.COM
+DNS2.CQSERVERS.COM
+
+New servers (Amazon)
+
+ns-1698.awsdns-20.co.uk
+ns-830.awsdns-39.net
+ns-476.awsdns-59.com
+ns-1128.awsdns-13.org
+
+** 2012-12-14 1:30 a DNS and other stuff
+Hi, Dear.  FYI, I finally managed to flush the DNS cache on my old PC
+(the system we use for name service around here), so I think everybody
+should now be getting the new address. 
+
+Also, I've changed:
+
+    Settings --> General --> WordPress Address (URL)
+
+to:
+
+    http://churchofstmartin.org
+
+Ditto for:
+
+    Settings --> General --> Site Address (URL)
+
+This seems to have had the salubrious effect of replacing references
+to the Amazon name ("ec2...") with the intended name
+("churchofstmartin.org").  In other words, if you navigate away from
+the front page, say to: 
+
+    Worship --> Music
+
+the URL will be:
+
+    http://churchofstmartin.org/music-at-st-martins/
+
+as we would hope.
+
+BTW, the following page was helpful in this:
+
+    http://codex.wordpress.org/Changing_The_Site_URL
+
+-- Mike
+
+** 2012-12-14 1:48 a Changing the links
+FYI, I had to relink the "Announcements", "Newsletter", etc., on the
+front page to get their URL's to display as
+"churchofstmartin.org/something".  The standard Wordpress procedure
+worked just fine for this, i.e., 
+
+    On the "Edit Page" page:
+
+        Drag the mouse over the word
+
+        Select the Link icon (looks like a dumbbell)
+
+        Choose "Link to existing content" (or similar)
+
+        Select the appropriate page (e.g., "Announcements")
+
+but I DID have to go through the process for each of the links.  We'll
+need to be on the lookout for other things of this nature. 
+
+** 2012-12-14 1:52 a Dates are gone from the announcement page
+FYI, I just commented out the reference to the "the_time" function in
+displayAnnouncements.php (see the appended for the diff).  That made
+the date go away on the Announcements page.  I think this looks a lot
+nicer. 
+
+-- Mike
+
+$ diff displayAnnouncements.php displayAnnouncements.php.20121214
+20,22c20,22
+<     ////// echo "<h3>";
+<       ////// the_time('F jS, Y');
+<     ////// echo "</h3>";
+---
+>     echo "<h3>";
+>       the_time('F jS, Y');
+>     echo "</h3>";
+
+
+** 2012-12-14 facebook and twitter
+Use the floating social media settings plugin
+http://www.facebook.com/pages/The-Episcopal-Church-of-St-Martin-Davis-CA/120720071291771
+
+** 2012-12-14 post expirator installed
+We are wondering if this works.  Waiting to see if eventually the
+announcements that have an expiration data will turn into drafts.
